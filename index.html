@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JWT Auth Example</title>
+</head>
+<body>
+  <h1>JWT Authentication Example</h1>
+  <div>
+    <h2>Register</h2>
+    <form id="registerForm">
+      <input type="text" id="registerUsername" placeholder="Username" required />
+      <input type="password" id="registerPassword" placeholder="Password" required />
+      <button type="submit">Register</button>
+    </form>
+  </div>
+  <div>
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="text" id="loginUsername" placeholder="Username" required />
+      <input type="password" id="loginPassword" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+  </div>
+  <div>
+    <h2>Protected Resource</h2>
+    <button id="getProtected">Get Protected Resource</button>
+    <p id="protectedMessage"></p>
+  </div>
+  <script>
+    document.getElementById('registerForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const username = document.getElementById('registerUsername').value;
+      const password = document.getElementById('registerPassword').value;
+      fetch('http://localhost:3000/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, password })
+      }).then(response => response.json()).then(data => {
+        alert(data.message);
+      });
+    });
+
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const username = document.getElementById('loginUsername').value;
+      const password = document.getElementById('loginPassword').value;
+      fetch('http://localhost:3000/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, password })
+      }).then(response => response.json()).then(data => {
+        localStorage.setItem('token', data.token);
+        alert('Login successful');
+      });
+    });
+
+    document.getElementById('getProtected').addEventListener('click', function() {
+      const token = localStorage.getItem('token');
+      fetch('http://localhost:3000/protected', {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }).then(response => response.json()).then(data => {
+        document.getElementById('protectedMessage').textContent = data.message;
+      });
+    });
+  </script>
+</body>
+</html>
