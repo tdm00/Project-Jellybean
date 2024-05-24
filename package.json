@@ -1,18 +1,17 @@
 {
-  "name": "project-jellybean",
-  "version": "1.0.0",
-  "description": "Purpose: to learn how to setup a CI/CD pipeline and a SPA that uses JWT for authentication.",
-  "main": "index.js",
+  "name": "myapp",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
-    "express": "^4.19.2",
-    "jsonwebtoken": "^9.0.2"
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "~1.9.1"
   }
 }
