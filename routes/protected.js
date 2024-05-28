@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
       if (err) {
         return res.status(500).send({ message: err.message });
       }
-      res.send({ message: `Hello ${decoded.username}` });
+      res.json(decoded);
     });
   
 });
