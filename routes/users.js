@@ -26,7 +26,7 @@ router.post('/login', (req, res) => {
   if (!user || !bcrypt.compareSync(password, user.password)) {
     return res.status(401).send({ message: 'Invalid credentials' });
   }
-  const token = jwt.sign({ username: user.username, access: "pool" }, secretKey, { expiresIn: '1h' });
+  const token = jwt.sign({ username: user.username, access: "lobby pool room_123" }, secretKey, { expiresIn: '1h' });
   res.send({ token });
 });
 
