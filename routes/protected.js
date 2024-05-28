@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
     }
     jwt.verify(token.split(' ')[1], secretKey, (err, decoded) => {
       if (err) {
-        return res.status(500).send({ message: 'Failed to authenticate token' });
+        return res.status(500).send({ message: err.message });
       }
       res.send({ message: `Hello ${decoded.username}` });
     });
