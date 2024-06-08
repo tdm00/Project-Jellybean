@@ -130,4 +130,4 @@ dist
 .pnp.*
 
 # do not store secret key
-config.js
+# config.js
