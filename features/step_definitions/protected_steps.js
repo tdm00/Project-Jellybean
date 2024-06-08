@@ -3,11 +3,12 @@ const request = require('supertest');
 const app = require('../../app'); // Adjust the path to your Express app
 const jwt = require('jsonwebtoken');
 const assert = require('assert');
+const config = require('../../config');
 
 let response;
 
 Given('I have a valid token', function () {
-  this.token = jwt.sign({ id: 'testuser' }, 'your_secret_key', { expiresIn: '1h' });
+  this.token = jwt.sign({ id: 'testuser' }, config.secretKey, { expiresIn: '1h' });
 });
 
 Given('I do not have a token', function () {
