@@ -2,9 +2,9 @@ var express = require('express');
 var router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const config = require('../config');
 
 const users = []; // This is a mock database for simplicity
-const secretKey = 'your_secret_key';
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -26,7 +26,7 @@ router.post('/login', (req, res) => {
   if (!user || !bcrypt.compareSync(password, user.password)) {
     return res.status(401).send({ message: 'Invalid credentials' });
   }
-  const token = jwt.sign({ username: user.username, access: "lobby pool room_123" }, secretKey, { expiresIn: '1h' });
+  const token = jwt.sign({ username: user.username, access: "lobby pool room_123" }, config.secretKey, { expiresIn: '1h' });
   res.send({ token });
 });
 
