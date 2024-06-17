@@ -8,4 +8,4 @@ Feature: User management
   Scenario: User login
     Given I am a registered user
     When I log in with my username and password
-    Then I should receive a token!
+    Then I should receive a token
