@@ -12,6 +12,7 @@ Purpose: to learn how to setup a CI/CD pipeline and a SPA that uses JWT for auth
 1. Make a copy of the .env.example file and save it as .env
 2. Edit the .env file, add a string to be used for the shared secret for signing the JSON Web Tokens
 
+
 ## Install Node.js
 1. Download and [install Node.js](https://nodejs.org/en/download/)
 
